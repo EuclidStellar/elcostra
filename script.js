@@ -6,7 +6,7 @@ const members = [
     'Ritika.json', 'ShivaniD.json', 'Tanisha.json', 'Yash.json', 'Amulya.json',
     'Arnav.json', 'Dikshant.json', 'Navneet.json', 'Sanvi.json', 'Shivansh.json',
     'Tanishka.json', 'Yashvi.json', 'Anchal.json', 'Arpit.json', 'FaizalD.json',
-    'Navya.json', 'Saumyal.json', 'Shreyaa.json', 'Tushar.json', 
+    'Navya.json', 'Saumyal.json', 'Shreyaa.json', 'Tushar.json',
     'Anish.json', 'Aryan.json', 'Khushi.json', 'Neha.json', 'Shailja.json',
     'Siddhartha.json', 'VanshD.json', 'yuga.json', 'Rohit.json'
 ];
