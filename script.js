@@ -59,7 +59,9 @@ async function fetchJoke(name) {
                 {
                     parts: [
                         {
-                            text: `Hi Gemini, please make a tech joke for ${name} as most of the name are from india and are students of AKGEC Ghaziabad so make jokes related to indian centric tech memes and areas so that he can laugh a lil bit. Make sure the joke remains professional and yet funny use some tech terms and name of their college along with the name of the person in the joke as well to make it more personal and also make fun of frontend developers , backend developers and Flutter Developers and ML developers as well do not make fun of all in one joke choose randomly from them and give response.`
+                            text: `Hi Gemini, please make a tech joke for ${name} as most of the names are from India and are students of AKGEC Ghaziabad so make jokes related to Indian-centric tech memes and areas so that he can laugh a little. Make sure the joke remains professional and yet funny use some tech terms and the name of their college along with the name of the person in the joke to make it more personal and also make fun of frontend developers, backend developers, Flutter Developers and ML developers. Do not make fun of all Frontend, Backend, Flutter and ML developers in one joke choose randomly from them and then give a response also do not create scenarios and multiple jokes and the joke should be a of maximum 100 words. Make sure the probability of joke on each developer is equal.`
+
+
                         }
                     ]
                 }
