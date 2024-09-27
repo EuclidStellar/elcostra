@@ -59,7 +59,7 @@ async function fetchJoke(name) {
                 {
                     parts: [
                         {
-                            text: `Hi Gemini, please make a tech joke for ${name} so that he can laugh a lil bit. Make sure the joke remains professional and yet funny use some tech terms and use the name of the person in the joke.`
+                            text: `Hi Gemini, please make a tech joke for ${name} as most of the name are from india and are students of AKGEC Ghaziabad so make jokes related to indian centric tech memes and areas so that he can laugh a lil bit. Make sure the joke remains professional and yet funny use some tech terms and name of their college along with the name of the person in the joke as well to make it more personal and also make fun of frontend developers , backend developers and Flutter Developers and ML developers as well do not make fun of all in one joke choose randomly from them and give response.`
                         }
                     ]
                 }
