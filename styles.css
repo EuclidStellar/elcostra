@@ -8,8 +8,21 @@ body {
 
 h1 {
     font-size: 36px;
+    width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 450px;
     margin-bottom: 20px;
     text-align: center; /* Center the title */
+}
+
+h1:hover{
+    border: 1px solid black;
+    border-radius: 9px;
+    background-color: #fffcfc;
+    cursor: pointer;
+    font-size: 38px;
 }
 
 .card {
