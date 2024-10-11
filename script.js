@@ -1,5 +1,5 @@
 const members = [
-    'AbhinavD.json', 'Ankita.json', 'Astha.json', 'Lakshay.json', 'Pranav.json',
+    'Kartik.json', 'AbhinavD.json', 'Ankita.json', 'Astha.json', 'Lakshay.json', 'Pranav.json',
     'Shashwat.json', 'Sneha.json', 'VidushiD.json', 'Aditya.json', 'AnshikaD.json',
     'Atul.json', 'Mahak.json', 'Ritik.json', 'Shivang.json', 'Sugandhi.json',
     'Vinay.json', 'AkshatD.json', 'Arjun.json', 'Ayush.json', 'Naitik.json',
@@ -8,10 +8,96 @@ const members = [
     'Tanishka.json', 'Yashvi.json', 'Anchal.json', 'Arpit.json', 'FaizalD.json',
     'Navya.json', 'Saumyal.json', 'Shreyaa.json', 'Tushar.json',
     'Anish.json', 'Aryan.json', 'Khushi.json', 'Neha.json', 'Shailja.json',
-    'Siddhartha.json', 'VanshD.json', 'yuga.json', 'Rohit.json','hathaipach.json',
+    'Siddhartha.json', 'VanshD.json', 'yuga.json', 'Rohit.json', 'hathaipach.json',
     'Maninder.json'
 ];
 
+// Dark Mode Toggle
+const toggleButton = document.getElementById('dark-mode-toggle');
+
+// Function to apply dark mode based on localStorage preference
+function applyDarkModePreference() {
+    const isDarkMode = localStorage.getItem('darkMode') === 'true'; // Check if dark mode is enabled
+
+    if (isDarkMode) {
+        enableDarkMode();
+    } else {
+        disableDarkMode();
+    }
+}
+
+// Call the function to apply the saved preference on page load
+applyDarkModePreference();
+
+// Toggle dark mode and save preference in localStorage
+toggleButton.addEventListener('click', () => {
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    if (isDarkMode) {
+        disableDarkMode(); // Switch to light mode
+        localStorage.setItem('darkMode', 'false'); // Save light mode state
+    } else {
+        enableDarkMode(); // Switch to dark mode
+        localStorage.setItem('darkMode', 'true'); // Save dark mode state
+    }
+});
+
+function enableDarkMode() {
+    document.body.classList.add('dark-mode');
+
+    const cards = document.querySelectorAll('.card');
+    cards.forEach((card) => {
+        card.classList.add('dark-mode');
+    });
+
+    const headings = document.querySelectorAll('h3');
+    headings.forEach((heading) => {
+        heading.classList.add('dark-mode');
+    });
+
+    const h1Elements = document.querySelectorAll('h1');
+    h1Elements.forEach((h1) => {
+        h1.classList.add('dark-mode');
+    });
+
+    const paragraphs = document.querySelectorAll('p');
+    paragraphs.forEach((p) => {
+        p.classList.add('dark-mode');
+    });
+
+    const links = document.querySelectorAll('a');
+    links.forEach((link) => {
+        link.classList.add('dark-mode');
+    });
+}
+
+function disableDarkMode() {
+    document.body.classList.remove('dark-mode');
+
+    const cards = document.querySelectorAll('.card');
+    cards.forEach((card) => {
+        card.classList.remove('dark-mode');
+    });
+
+    const headings = document.querySelectorAll('h3');
+    headings.forEach((heading) => {
+        heading.classList.remove('dark-mode');
+    });
+
+    const h1Elements = document.querySelectorAll('h1');
+    h1Elements.forEach((h1) => {
+        h1.classList.remove('dark-mode');
+    });
+
+    const paragraphs = document.querySelectorAll('p');
+    paragraphs.forEach((p) => {
+        p.classList.remove('dark-mode');
+    });
+
+    const links = document.querySelectorAll('a');
+    links.forEach((link) => {
+        link.classList.remove('dark-mode');
+    });
+}
 
 async function fetchMemberData(memberFile) {
     const response = await axios.get(`members/${memberFile}`);
