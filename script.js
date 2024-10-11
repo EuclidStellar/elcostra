@@ -8,8 +8,8 @@ const members = [
     'Tanishka.json', 'Yashvi.json', 'Anchal.json', 'Arpit.json', 'FaizalD.json',
     'Navya.json', 'Saumyal.json', 'Shreyaa.json', 'Tushar.json',
     'Anish.json', 'Aryan.json', 'Khushi.json', 'Neha.json', 'Shailja.json',
-    'Siddhartha.json', 'VanshD.json', 'yuga.json', 'Rohit.json', 'hathaipach.json',
-    'Maninder.json'
+    'Siddhartha.json', 'VanshD.json', 'yuga.json', 'Rohit.json','hathaipach.json',
+    'Maninder.json','JaydeepRawat.json'
 ];
 
 // Dark Mode Toggle
