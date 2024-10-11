@@ -15,32 +15,6 @@ const members = [
 // Dark Mode Toggle
 const toggleButton = document.getElementById('dark-mode-toggle');
 
-// Function to apply dark mode based on localStorage preference
-function applyDarkModePreference() {
-    const isDarkMode = localStorage.getItem('darkMode') === 'true'; // Check if dark mode is enabled
-
-    if (isDarkMode) {
-        enableDarkMode();
-    } else {
-        disableDarkMode();
-    }
-}
-
-// Call the function to apply the saved preference on page load
-applyDarkModePreference();
-
-// Toggle dark mode and save preference in localStorage
-toggleButton.addEventListener('click', () => {
-    const isDarkMode = document.body.classList.contains('dark-mode');
-    if (isDarkMode) {
-        disableDarkMode(); // Switch to light mode
-        localStorage.setItem('darkMode', 'false'); // Save light mode state
-    } else {
-        enableDarkMode(); // Switch to dark mode
-        localStorage.setItem('darkMode', 'true'); // Save dark mode state
-    }
-});
-
 function enableDarkMode() {
     document.body.classList.add('dark-mode');
 
@@ -99,6 +73,33 @@ function disableDarkMode() {
     });
 }
 
+
+// Function to apply dark mode based on localStorage preference
+function applyDarkModePreference() {
+    const isDarkMode = localStorage.getItem('darkMode') === 'true'; // Check if dark mode is enabled
+
+    if (isDarkMode) {
+        enableDarkMode();
+    } else {
+        disableDarkMode();
+    }
+}
+
+
+
+// Toggle dark mode and save preference in localStorage
+toggleButton.addEventListener('click', () => {
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    if (isDarkMode) {
+        disableDarkMode(); // Switch to light mode
+        localStorage.setItem('darkMode', 'false'); // Save light mode state
+    } else {
+        enableDarkMode(); // Switch to dark mode
+        localStorage.setItem('darkMode', 'true'); // Save dark mode state
+    }
+});
+
+
 async function fetchMemberData(memberFile) {
     const response = await axios.get(`members/${memberFile}`);
     return response.data;
@@ -112,6 +113,8 @@ async function fetchMembers() {
             const member = await fetchMemberData(memberFile);
             const memberCard = document.createElement('div');
             memberCard.className = 'card';
+
+
             memberCard.innerHTML = `
                 <h3>${member.name}</h3>
                 <p><strong>Branch:</strong> ${member.branch}</p>
@@ -137,6 +140,7 @@ async function fetchMembers() {
             console.error(`Error fetching ${memberFile}:`, error);
         }
     }
+    applyDarkModePreference();
 }
 
 async function fetchJoke(name) {
@@ -179,3 +183,6 @@ function hideJoke(memberCard) {
 
 // Call to fetch members
 fetchMembers();
+
+// Call the function to apply the saved preference on page load
+applyDarkModePreference();
