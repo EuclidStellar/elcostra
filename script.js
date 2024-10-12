@@ -1,16 +1,16 @@
-const members = [
-    'Kartik.json', 'AbhinavD.json', 'Ankita.json', 'Astha.json', 'Lakshay.json', 'Pranav.json',
-    'Shashwat.json', 'Sneha.json', 'VidushiD.json', 'Aditya.json', 'AnshikaD.json',
-    'Atul.json', 'Mahak.json', 'Ritik.json', 'Shivang.json', 'Sugandhi.json',
-    'Vinay.json', 'AkshatD.json', 'Arjun.json', 'Ayush.json', 'Naitik.json',
-    'Ritika.json', 'ShivaniD.json', 'Tanisha.json', 'Yash.json', 'Amulya.json',
-    'Arnav.json', 'Dikshant.json', 'Navneet.json', 'Sanvi.json', 'Shivansh.json',
-    'Tanishka.json', 'Yashvi.json', 'Anchal.json', 'Arpit.json', 'FaizalD.json',
-    'Navya.json', 'Saumyal.json', 'Shreyaa.json', 'Tushar.json',
-    'Anish.json', 'Aryan.json', 'Khushi.json', 'Neha.json', 'Shailja.json',
-    'Siddhartha.json', 'VanshD.json', 'yuga.json', 'Rohit.json','hathaipach.json',
-    'Maninder.json','JaydeepRawat.json'
-];
+// const members = [
+//     'Kartik.json', 'AbhinavD.json', 'Ankita.json', 'Astha.json', 'Lakshay.json', 'Pranav.json',
+//     'Shashwat.json', 'Sneha.json', 'VidushiD.json', 'Aditya.json', 'AnshikaD.json',
+//     'Atul.json', 'Mahak.json', 'Ritik.json', 'Shivang.json', 'Sugandhi.json',
+//     'Vinay.json', 'AkshatD.json', 'Arjun.json', 'Ayush.json', 'Naitik.json',
+//     'Ritika.json', 'ShivaniD.json', 'Tanisha.json', 'Yash.json', 'Amulya.json',
+//     'Arnav.json', 'Dikshant.json', 'Navneet.json', 'Sanvi.json', 'Shivansh.json',
+//     'Tanishka.json', 'Yashvi.json', 'Anchal.json', 'Arpit.json', 'FaizalD.json',
+//     'Navya.json', 'Saumyal.json', 'Shreyaa.json', 'Tushar.json',
+//     'Anish.json', 'Aryan.json', 'Khushi.json', 'Neha.json', 'Shailja.json',
+//     'Siddhartha.json', 'VanshD.json', 'yuga.json', 'Rohit.json','hathaipach.json',
+//     'Maninder.json','JaydeepRawat.json'
+// ];
 
 // Dark Mode Toggle
 const toggleButton = document.getElementById('dark-mode-toggle');
@@ -107,7 +107,8 @@ async function fetchMemberData(memberFile) {
 
 async function fetchMembers() {
     const membersDiv = document.getElementById('members');
-
+    const response = await axios.get('members/');
+    const members = response.data.filter(file => file.endsWith('.json'));
     for (const memberFile of members) {
         try {
             const member = await fetchMemberData(memberFile);
@@ -123,15 +124,24 @@ async function fetchMembers() {
 
             // Adding hover effect to fetch joke
             memberCard.addEventListener('mouseenter', () => {
+                const loadingElement = document.createElement('p');
+                loadingElement.id = 'loading';
+                loadingElement.innerText = 'Loading...';
+                memberCard.appendChild(loadingElement);
                 let hoverTimer = setTimeout(async () => {
                     const joke = await fetchJoke(member.name);
                     showJoke(memberCard, joke);
-                }, 5000); // 5 seconds
+                    memberCard.removeChild(loadingElement);
+                }, 2000);
 
                 // Clear the timer if the mouse leaves the card before 5 seconds
                 memberCard.addEventListener('mouseleave', () => {
                     clearTimeout(hoverTimer);
                     hideJoke(memberCard);
+                    const loadingElement = memberCard.querySelector('#loading');
+                    if (loadingElement) {
+                        memberCard.removeChild(loadingElement);
+                    }
                 }, { once: true });
             });
 
