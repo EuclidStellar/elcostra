@@ -1,16 +1,18 @@
-const members = [
-    'Kartik.json', 'AbhinavD.json', 'Ankita.json', 'Astha.json', 'Lakshay.json', 'Pranav.json',
-    'Shashwat.json', 'Sneha.json', 'VidushiD.json', 'Aditya.json', 'AnshikaD.json',
-    'Atul.json', 'Mahak.json', 'Ritik.json', 'Shivang.json', 'Sugandhi.json',
-    'Vinay.json', 'AkshatD.json', 'Arjun.json', 'Ayush.json', 'Naitik.json',
-    'Ritika.json', 'ShivaniD.json', 'Tanisha.json', 'Yash.json', 'Amulya.json',
-    'Arnav.json', 'Dikshant.json', 'Navneet.json', 'Sanvi.json', 'Shivansh.json',
-    'Tanishka.json', 'Yashvi.json', 'Anchal.json', 'Arpit.json', 'FaizalD.json',
-    'Navya.json', 'Saumyal.json', 'Shreyaa.json', 'Tushar.json',
-    'Anish.json', 'Aryan.json', 'Khushi.json', 'Neha.json', 'Shailja.json',
-    'Siddhartha.json', 'VanshD.json', 'yuga.json', 'Rohit.json','hathaipach.json',
-    'Maninder.json','JaydeepRawat.json'
-];
+import {getmember_names, getmember_data, add_member_to_fb} from "./apifb.js";
+// const members = [
+//     'Kartik.json', 'AbhinavD.json', 'Ankita.json', 'Astha.json', 'Lakshay.json', 'Pranav.json',
+//     'Shashwat.json', 'Sneha.json', 'VidushiD.json', 'Aditya.json', 'AnshikaD.json',
+//     'Atul.json', 'Mahak.json', 'Ritik.json', 'Shivang.json', 'Sugandhi.json',
+//     'Vinay.json', 'AkshatD.json', 'Arjun.json', 'Ayush.json', 'Naitik.json',
+//     'Ritika.json', 'ShivaniD.json', 'Tanisha.json', 'Yash.json', 'Amulya.json',
+//     'Arnav.json', 'Dikshant.json', 'Navneet.json', 'Sanvi.json', 'Shivansh.json',
+//     'Tanishka.json', 'Yashvi.json', 'Anchal.json', 'Arpit.json', 'FaizalD.json',
+//     'Navya.json', 'Saumyal.json', 'Shreyaa.json', 'Tushar.json',
+//     'Anish.json', 'Aryan.json', 'Khushi.json', 'Neha.json', 'Shailja.json',
+//     'Siddhartha.json', 'VanshD.json', 'yuga.json', 'Rohit.json','hathaipach.json',
+//     'Maninder.json','JaydeepRawat.json'
+// ];
+const members = await getmember_names();
 
 // Dark Mode Toggle
 const toggleButton = document.getElementById('dark-mode-toggle');
@@ -101,8 +103,7 @@ toggleButton.addEventListener('click', () => {
 
 
 async function fetchMemberData(memberFile) {
-    const response = await axios.get(`members/${memberFile}`);
-    return response.data;
+    return getmember_data(memberFile);
 }
 
 async function fetchMembers() {
@@ -123,15 +124,24 @@ async function fetchMembers() {
 
             // Adding hover effect to fetch joke
             memberCard.addEventListener('mouseenter', () => {
+                const loadingElement = document.createElement('p');
+                loadingElement.id = 'loading';
+                loadingElement.innerText = 'Loading...';
+                memberCard.appendChild(loadingElement);
                 let hoverTimer = setTimeout(async () => {
                     const joke = await fetchJoke(member.name);
                     showJoke(memberCard, joke);
-                }, 5000); // 5 seconds
+                    memberCard.removeChild(loadingElement);
+                }, 2000); // 2 seconds
 
                 // Clear the timer if the mouse leaves the card before 5 seconds
                 memberCard.addEventListener('mouseleave', () => {
                     clearTimeout(hoverTimer);
                     hideJoke(memberCard);
+                    const loadingElement = memberCard.querySelector('#loading');
+                    if (loadingElement) {
+                        memberCard.removeChild(loadingElement);
+                    }
                 }, { once: true });
             });
 
@@ -186,3 +196,25 @@ fetchMembers();
 
 // Call the function to apply the saved preference on page load
 applyDarkModePreference();
+
+
+const addmember_btn = document.getElementById('add_member');
+addmember_btn.addEventListener('click', async () => {
+    const member_name = prompt("Enter the name of the member");
+    const member_branch = prompt("Enter the branch of the member");
+    const member_githubID = prompt("Enter the GitHub ID of the member");
+    const member_url = prompt("Enter the GitHub URL of the member");
+
+    const member = {
+        name: member_name,
+        branch: member_branch,
+        githubID: member_githubID,
+        url: member_url
+    };
+    console.log(member);
+    if(member.name === "" || member.branch === "" || member.githubID === "" || member.url === ""){
+        return;
+    }
+    add_member_to_fb(member);
+    location.reload();
+});
