@@ -190,3 +190,13 @@ a.dark-mode:hover {
     padding: 15px;
   }
 }
+
+#add_member{
+  background-color: #3498db;
+  border: none;
+  padding: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
