@@ -10,7 +10,7 @@ import {getmember_names, getmember_data, add_member_to_fb} from "./apifb.js";
 //     'Navya.json', 'Saumyal.json', 'Shreyaa.json', 'Tushar.json',
 //     'Anish.json', 'Aryan.json', 'Khushi.json', 'Neha.json', 'Shailja.json',
 //     'Siddhartha.json', 'VanshD.json', 'yuga.json', 'Rohit.json','hathaipach.json',
-//     'Maninder.json','JaydeepRawat.json','Mahi.json'
+//     'Maninder.json','JaydeepRawat.json'
 // ];
 const members = await getmember_names();
 
